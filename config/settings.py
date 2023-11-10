@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Adding apps that are part of Django framework
+    "customer.apps.CustomerConfig",
+    "product.apps.ProductConfig",
+    "order.apps.OrderConfig",
 ]
 
 MIDDLEWARE = [
