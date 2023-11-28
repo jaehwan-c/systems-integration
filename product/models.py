@@ -30,6 +30,8 @@ class Product(models.Model):
     brand_id = models.ForeignKey('Brand', on_delete=models.CASCADE, verbose_name='Brand')
     quantity = models.IntegerField(verbose_name='Quantity')
     price = models.IntegerField(verbose_name="ProductPrice")
+    LOCATION_CHOICES = [(x, x) for x in range(1, 11)]
+    location = models.PositiveIntegerField(default=1, choices=LOCATION_CHOICES, verbose_name='Location')
 
     def __str__(self):
         return self.name
