@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
+from django.urls import reverse
 
 # Create your models here.
 class Category(models.Model):
@@ -11,8 +12,8 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'categories'
 
-    # def get_absolute_url(self):
-    #     return reverse('store:category_list', args=[self.slug])
+    def get_absolute_url(self):
+        return reverse('store:category_list', args=[self.slug])
     
     def __str__(self):
         return self.name
@@ -24,6 +25,9 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.brand
+    
+    def get_absolute_url(self):
+        return reverse('store:brand_list', args=[self.slug])
     
     class Meta():
         verbose_name = 'brand'
@@ -41,13 +45,16 @@ class Product(models.Model):
     location = models.PositiveIntegerField(default=1, choices=LOCATION_CHOICES, verbose_name='Location')
     # Upload Images
     image = models.ImageField(upload_to='images/')
-    #
+    # FIFO
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     class Meta():
         verbose_name_plural = 'Products'
         ordering = ('-created',)
+
+    def get_absolute_url(self):
+        return reverse('store:product_detail', args=[self.slug])
 
     def __str__(self):
         return self.name
@@ -62,7 +69,7 @@ class Customer(models.Model):
     
     def __str__(self):
         return self.email
-    
+
     class Meta:
         db_table = 'customer'
         verbose_name = 'customer'
