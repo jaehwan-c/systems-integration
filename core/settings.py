@@ -64,8 +64,10 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'store.views.categories',
-                'store.views.brands'
+                'store.context_processors.categories',
+                'store.context_processors.brands'
+                # 'store.views.categories',
+                # 'store.views.brands'
             ],
         },
     },

@@ -14,7 +14,7 @@ def brands(request):
         'brands': Brand.objects.all()
     }
 
-def all_products(request):
+def product_all(request):
     products = Product.objects.all()
     return render(request, 'store/home.html', {'products': products})
 

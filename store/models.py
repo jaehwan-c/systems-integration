@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.urls import reverse
 
+# Only active products
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(is_active=True)
+
 # Create your models here.
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
@@ -48,6 +53,7 @@ class Product(models.Model):
     # FIFO
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     class Meta():
         verbose_name_plural = 'Products'
